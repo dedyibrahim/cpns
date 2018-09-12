@@ -11,6 +11,10 @@ $query = $this->db->get_where('soal',array('id_soal'=>$id_soal));
 return $query;
 
 }
+function jumlah_soal(){
+$query = $this->db->get('soal');
+return $query;
+}
 function data_soal(){
 $this->db->limit(1);
 $query = $this->db->get('soal');
@@ -26,7 +30,10 @@ return $query;
     
 }
 
-
+function input_nilai($data,$param){
+    $this->db->update('akun',$data,array('id_account'=>$param));
+    
+}
 }
 
 

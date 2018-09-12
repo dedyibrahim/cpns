@@ -4,8 +4,7 @@ class C_dashboard extends CI_Controller{
 public function __construct() {
 parent::__construct();
 $this->load->model('M_dashboard');
-
-
+$this->load->library('datatables');
 }
 
 public function index(){
@@ -13,6 +12,10 @@ public function index(){
 $this->load->view('umum/V_header');
 $this->load->view('V_login_dashboard');
  
+}
+
+public function json_soal(){
+echo $this->M_dashboard->json_soal();       
 }
 
 public function login(){
@@ -63,6 +66,13 @@ redirect(404);
 }    
 
 
+}
+function hapus_soal(){
+$id_soal  = base64_decode($this->uri->segment(3));
+
+$this->db->delete('soal',array('id_soal'=>$id_soal));
+
+redirect('C_dashboard/input_soal');
 }
     
 }

@@ -49,3 +49,34 @@ if($this->session->userdata('email_soal') == NULL){
 </div>
 
 </div></div>
+<script type="text/javascript">
+function keluar(){
+var <?php echo $this->security->get_csrf_token_name();?>    = "<?php echo $this->security->get_csrf_hash(); ?>";       
+swal({
+title: 'Anda yakin ingin keluar',
+type: 'warning',
+showCancelButton: true,
+confirmButtonColor: '#3085d6',
+cancelButtonColor: '#d33',
+confirmButtonText: 'Ya Keluar'
+}).then((result) => {
+$.ajax({
+type:"post",
+url:"<?php echo base_url('C_soal/keluar') ?>",
+data:"token="+token,
+success:function(data){
+
+}
+});
+swal({
+title:"", 
+text:'Logout berhasil',
+type:"success",
+showConfirmButton: true,
+}).then(function() {
+window.location.href = "<?php echo base_url('C_soal') ?>";
+});
+
+})
+}
+</script>

@@ -40,7 +40,6 @@
 <br><p align="center"><a href="#" id="belum_punnya" >Belum Punya akun ?</a></p>
 
 <hr>
-<a href="#" id="lupa_password" >Lupa Password ?</a>
 <button class="btn btn-success float-right" id="btn_login" >Sign in <span class="fa fa-sign-in"></span></button>
 <div class="clearfix"></div><br>
 </div>

@@ -1,19 +1,20 @@
-  <div  style="background-color:#fff; "><hr>
-    <?php
-    
-   foreach ($query->result_array() as $soal ){
-    ?>
-        <h5><?php echo $soal['soal'] ?></h5>
-        <h6>A. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_a'] ?>"> <?php echo $soal['jawaban_a'] ?></h6>
-        <h6>B. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_b'] ?>"> <?php echo $soal['jawaban_b'] ?></h6>
-        <h6>C. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_d'] ?>"> <?php echo $soal['jawaban_c'] ?></h6>
-        <h6>D. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_d'] ?>"> <?php echo $soal['jawaban_d'] ?></h6>
-        <h6>E. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_e'] ?>"> <?php echo $soal['jawaban_e'] ?></h6>
-        <button class="btn btn-success float-right" onclick="simpan_jawaban('<?php echo $soal['id_soal'] ?>')">Simpan dan lanjutkan <span class="fa fa-angle-right"></span></button>
-        <div class="clearfix"></div><hr>
-   <?php } ?>
- 
-    </div>
+<div  style="background-color:#fff; "><hr>
+<?php foreach ($query->result_array() as $soal ){ ?>
+<h5><?php echo $data_soal['selesai'] ?>. <?php echo $soal['soal'] ?></h5>
+<h6>A. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_a'] ?>"> <?php echo $soal['jawaban_a'] ?></h6>
+<h6>B. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_b'] ?>"> <?php echo $soal['jawaban_b'] ?></h6>
+<h6>C. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_d'] ?>"> <?php echo $soal['jawaban_c'] ?></h6>
+<h6>D. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_d'] ?>"> <?php echo $soal['jawaban_d'] ?></h6>
+<h6>E. <input name="<?php echo $soal['id_soal'] ?>" id="jawaban" type="radio" value="<?php echo $soal['jawaban_e'] ?>"> <?php echo $soal['jawaban_e'] ?></h6>
+<?php } ?>
+<hr>
+Soal Nomor <?php echo $data_soal['selesai'] ?> Dari
+<?php echo $data_soal['soal'] ?> Soal
+
+<button class="btn btn-success float-right" onclick="simpan_jawaban('<?php echo $soal['id_soal'] ?>')">Simpan dan lanjutkan <span class="fa fa-angle-right"></span></button>
+<div class="clearfix"></div><hr>
+
+</div>
 
 <script type="text/javascript">
 
@@ -47,7 +48,7 @@ data_soal();
 });
 
 }else{
-    
+
 swal({
 title:"", 
 text:'Anda Belum memilih jawaban',
@@ -59,22 +60,21 @@ showConfirmButton: true,
 
 
 }
-
 var countDownDate = new Date("<?php echo $this->session->userdata('set_timer') ?>").getTime();
 var x = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("demo").innerHTML =   hours + " Jam "
-    + minutes + " Menit " + seconds + " Detik ";
-    if (distance < 0) {
-    swal({
-        type:"warning",
-        text:"Waktu Mengerjakan soal telah habis",
-    })
-     }
+var now = new Date().getTime();
+var distance = countDownDate - now;
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+document.getElementById("demo").innerHTML =   hours + " Jam "
++ minutes + " Menit " + seconds + " Detik ";
+if (distance < 0) {
+swal({
+type:"warning",
+text:"Waktu Mengerjakan soal telah habis",
+})
+}
 }, 1000);
 </script>
